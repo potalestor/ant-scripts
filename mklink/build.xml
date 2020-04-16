@@ -1,0 +1,23 @@
+<project name="mklink for ant" default="dist" basedir=".">
+  <property name="source" location="source"/>
+  <property name="target" location="target"/>
+
+  <target name="init">
+    <mkdir dir="${source}"/>
+    <mkdir dir="${target}"/>
+  </target>
+
+  <target name="mklink" depends="init"
+    description="make symbolic link to folder">
+    <exec dir="${basedir}" executable="cmd.exe">
+        <arg line="/c mklink /j ${source}\linked ${target}"/>
+    </exec>
+  </target>
+
+  <target name="clean"
+        description="clean up">
+    <delete dir="${source}"/>
+    <delete dir="${target}"/>
+  </target>
+
+</project>
